@@ -20,5 +20,5 @@
 5) Инспектор приложения - https://appium.io/docs/en/drivers/android-uiautomator2/
 
 ### Login credentials
-login - qa.ajax.app.automation@gmail.com
-password - qa_automation_password
+login - ''
+password - ''
