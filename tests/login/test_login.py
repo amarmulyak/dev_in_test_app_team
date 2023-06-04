@@ -30,22 +30,31 @@ def test_user_login(user_login_fixture, popup_fixture, home_fixture):
                          [
                              (EMAIL, get_random_string(), ErrorMessages.WRONG_LOGIN_PASSWORD),
                              (fake.email(), PASSWORD, ErrorMessages.WRONG_LOGIN_PASSWORD),
-                             (get_random_string(), PASSWORD, ErrorMessages.INVALID_EMAIL_FORMAT)
+                             (get_random_string(), PASSWORD, ErrorMessages.INVALID_EMAIL_FORMAT),
+                             ('', '', ''),
+                             (EMAIL, '', ''),
+                             ('', PASSWORD, '')
                          ],
                          ids=[
                              'Correct email, incorrect password',
                              'Incorrect email, correct password',
-                             'Random string as email, correct password'
+                             'Random string as email, correct password',
+                             'Empty email, empty password',
+                             'Correct email, empty password',
+                             'Empty email, correct password'
                          ]
                          )
 def test_user_login_negative(user_login_fixture, open_login_page, email, password, error):
-    error_message = user_login_fixture \
+    user_login_fixture \
         .input_email(email) \
         .input_password(password) \
-        .click_login_button() \
-        .get_notification_error_text()
+        .click_login_button()
+
+    if error:
+        error_message = user_login_fixture \
+            .get_notification_error_text()
+
+        assert error_message == error.value
 
     user_login_fixture \
         .verify_page_is_opened()
-
-    assert error_message == error.value
