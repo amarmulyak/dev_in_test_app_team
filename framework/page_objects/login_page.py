@@ -1,5 +1,5 @@
-from .login_locators import LoginLocators
-from .page import Page
+from framework.locators import LoginLocators
+from framework.page_objects.page import Page
 
 
 class LoginPage(Page):
