@@ -1,7 +1,12 @@
 import functools
+import random
+import string
 import time
 
+from faker import Faker
 from config import TIMEOUT, POLLING
+
+fake = Faker()
 
 
 def retry(timeout=TIMEOUT, polling=POLLING):
@@ -20,3 +25,21 @@ def retry(timeout=TIMEOUT, polling=POLLING):
         return wrapper
 
     return decorator
+
+def get_random_string(num: int = 5,
+                      ascii_lowercase: bool = True,
+                      ascii_uppercase: bool = False,
+                      digits: bool = True,
+                      punctuation: bool = False):
+    characters = str()
+
+    if ascii_lowercase:
+        characters += string.ascii_lowercase
+    if ascii_uppercase:
+        characters += string.ascii_uppercase
+    if digits:
+        characters += string.digits
+    if punctuation:
+        characters += string.punctuation
+
+    return ''.join(random.choices(characters, k=num))
