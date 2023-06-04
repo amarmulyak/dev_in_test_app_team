@@ -1,7 +1,7 @@
 from config import EMAIL, PASSWORD
 
 
-def test_user_login(user_login_fixture, popup_fixture):
+def test_user_login(user_login_fixture, popup_fixture, home_fixture):
     user_login_fixture \
         .click_main_login_button() \
         .input_email(EMAIL) \
@@ -11,4 +11,5 @@ def test_user_login(user_login_fixture, popup_fixture):
     popup_fixture \
         .click_deny_button()
 
-    assert True
+    home_fixture \
+        .verify_page_is_opened()

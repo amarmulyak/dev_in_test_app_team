@@ -1,2 +1,3 @@
-from framework.locators.login_locators import LoginLocators
+from framework.locators.login_page_locators import LoginPageLocators
 from framework.locators.popup_modal_locators import PopupModalLocators
+from framework.locators.home_page_locators import HomePageLocators
