@@ -10,7 +10,9 @@ logger = logging.getLogger()
 
 
 @pytest.fixture(scope='module')
-def open_login_page(user_login_fixture):
+def open_login_page(request, user_login_fixture):
+    logger.info('\nRunning %s', request.fixturename)
+
     user_login_fixture \
         .click_main_login_button() \
         .verify_page_is_opened()

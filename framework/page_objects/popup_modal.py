@@ -13,5 +13,6 @@ class PopupModal(Page):
 
     def click_deny_button(self):
         logger.info('Click "Deny" button on the Pop Up')
+
         self.click_element(self.popup_modal_locators.deny_button)
         return self
