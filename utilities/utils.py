@@ -1,9 +1,12 @@
 import functools
+import os
 import random
 import string
 import time
+from pathlib import Path
 
 from faker import Faker
+
 from config import TIMEOUT, POLLING
 
 fake = Faker()
@@ -26,6 +29,7 @@ def retry(timeout=TIMEOUT, polling=POLLING):
 
     return decorator
 
+
 def get_random_string(num: int = 5,
                       ascii_lowercase: bool = True,
                       ascii_uppercase: bool = False,
@@ -43,3 +47,11 @@ def get_random_string(num: int = 5,
         characters += string.punctuation
 
     return ''.join(random.choices(characters, k=num))
+
+
+def get_root_folder() -> Path:
+    return Path(__file__).parent.parent.absolute()
+
+
+def get_path(*path) -> str:
+    return os.path.join(get_root_folder(), *path)

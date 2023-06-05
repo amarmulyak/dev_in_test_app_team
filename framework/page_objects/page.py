@@ -1,6 +1,6 @@
 from appium.webdriver.common.appiumby import AppiumBy
 
-from utils.utils import retry
+from utilities.utils import retry
 
 
 class Page:

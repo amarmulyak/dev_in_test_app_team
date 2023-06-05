@@ -1,8 +1,12 @@
+import logging
+
 import pytest
 
 from config import EMAIL, PASSWORD
-from utils.utils import get_random_string, fake
+from utilities.utils import get_random_string, fake
 from framework.test_data.error_messages import ErrorMessages
+
+logger = logging.getLogger()
 
 
 @pytest.fixture(scope='module')

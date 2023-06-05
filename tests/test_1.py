@@ -1,7 +1,7 @@
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 
-from utils.android_utils import android_get_desired_capabilities
+from utilities.android_utils import android_get_desired_capabilities
 
 
 driver = webdriver.Remote('http://localhost:4723/wd/hub', android_get_desired_capabilities())
