@@ -16,7 +16,9 @@ def open_login_page(user_login_fixture):
         .verify_page_is_opened()
 
 
-def test_user_login(user_login_fixture, popup_fixture, home_fixture):
+def test_user_login(request, user_login_fixture, popup_fixture, home_fixture):
+    logger.info('\nRunning %s', request.node.name)
+
     user_login_fixture \
         .click_main_login_button() \
         .input_email(EMAIL) \
@@ -48,17 +50,17 @@ def test_user_login(user_login_fixture, popup_fixture, home_fixture):
                              'Empty email, correct password'
                          ]
                          )
-def test_user_login_negative(user_login_fixture, open_login_page, email, password, error):
+def test_user_login_negative(request, user_login_fixture, open_login_page, email, password, error):
+    logger.info('\nRunning %s', request.node.name)
+
     user_login_fixture \
         .input_email(email) \
         .input_password(password) \
         .click_login_button()
 
     if error:
-        error_message = user_login_fixture \
-            .get_notification_error_text()
-
-        assert error_message == error.value
+        user_login_fixture \
+            .verify_notification_error_text(error.value)
 
     user_login_fixture \
         .verify_page_is_opened()

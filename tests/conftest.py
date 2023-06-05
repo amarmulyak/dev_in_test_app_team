@@ -31,7 +31,7 @@ def pytest_configure():
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
-    formatter = logging.Formatter('%(asctime)s - %(funcName)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     debug_handler = logging.FileHandler(get_path(get_root_folder(), 'debug.log'), mode='w')
     debug_handler.setLevel(logging.DEBUG)
