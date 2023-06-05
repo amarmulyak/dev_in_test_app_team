@@ -10,6 +10,18 @@ from utilities.utils import get_path, get_root_folder
 
 
 @pytest.fixture(scope='session')
+def get_phone_udid():
+    devices = subprocess.run(
+        ['adb', 'devices'],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        check=False,
+        universal_newlines=True
+    )
+    return devices.stdout.split('\n')[1].split('\t')[0]
+
+
+@pytest.fixture(scope='session')
 def run_appium_server():
     subprocess.Popen(
         ['appium', '-a', '0.0.0.0', '-p', '4723', '--allow-insecure', 'adb_shell'],

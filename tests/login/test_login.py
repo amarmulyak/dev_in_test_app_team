@@ -18,8 +18,8 @@ def open_login_page(request, user_login_fixture):
         .verify_page_is_opened()
 
 
-def test_user_login(request, user_login_fixture, popup_fixture, home_fixture):
-    logger.info('\nRunning %s', request.node.name)
+def test_user_login(request, user_login_fixture, popup_fixture, home_fixture, get_phone_udid):
+    logger.info('\nRunning %s on %s', request.node.name, get_phone_udid)
 
     user_login_fixture \
         .click_main_login_button() \
@@ -52,8 +52,8 @@ def test_user_login(request, user_login_fixture, popup_fixture, home_fixture):
                              'Empty email, correct password'
                          ]
                          )
-def test_user_login_negative(request, user_login_fixture, open_login_page, email, password, error):
-    logger.info('\nRunning %s', request.node.name)
+def test_user_login_negative(request, user_login_fixture, open_login_page, email, password, error, get_phone_udid):
+    logger.info('\nRunning %s on %s', request.node.name, get_phone_udid)
 
     user_login_fixture \
         .input_email(email) \
